@@ -1,4 +1,4 @@
-# react-native-speech-bubble
+# react-native-speech-bubble [![npm version](https://badge.fury.io/js/react-native-speech-bubble.svg)](https://badge.fury.io/js/react-native-speech-bubble)
 
 A speech bubble dialog component for React Native.
 
