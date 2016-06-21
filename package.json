@@ -1,0 +1,39 @@
+{
+  "name": "react-native-speech-bubble",
+  "version": "0.1.0",
+  "description": "A speech bubble dialog component for React Native.",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "contributors": [
+    "Nicolas Charpentier"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "react-native-components",
+    "react-native-component",
+    "speech-bubble",
+    "speech",
+    "bubble",
+    "typewriter",
+    "dialog",
+    "conversation",
+    "tutorial",
+    "intro",
+    "introduction"
+  ],
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.4",
+    "eslint": "^2.11.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.3.0",
+    "eslint-plugin-react": "^5.1.1"
+  }
+}
