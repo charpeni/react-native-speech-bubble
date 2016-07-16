@@ -24,6 +24,7 @@ const propTypes = {
   speechBubbleTextStyle: View.propTypes.style,
   speeches: PropTypes.array.isRequired,
   typeWriterStyle: Text.propTypes.style,
+  nextStyle: View.propTypes.style,
   style: View.propTypes.style,
 };
 
@@ -160,7 +161,7 @@ class SpeechBubble extends React.Component {
     return !this.state.lastSpeech ? (
       <Animated.View
         style={[
-          styles.dialogNext,
+          this.props.nextStyle || styles.dialogNext,
           { transform: [{ translateY: this.state.nextDialogAnimation.y }] },
           { opacity: this.state.typeEnd && !this.state.lastSpeech ? 1 : 0 },
         ]}
@@ -198,7 +199,7 @@ class SpeechBubble extends React.Component {
     return this.state.lastSpeech ? (
       <Animated.View
         style={[
-          styles.dialogNext,
+          this.props.nextStyle || styles.dialogNext,
           { transform: [{ rotate: interpolatedRotateAnimation }] },
           { opacity: this.state.typeEnd && this.state.lastSpeech ? 1 : 0 },
         ]}
