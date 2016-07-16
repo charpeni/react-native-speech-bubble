@@ -19,6 +19,7 @@ const propTypes = {
   onTypingEnd: PropTypes.func,
   onTyped: PropTypes.func,
   text: PropTypes.string,
+  typeWriterStyle: Text.propTypes.style,
 };
 
 const defaultProps = {
@@ -118,10 +119,10 @@ class TypeWriter extends React.Component {
   }
 
   render() {
-    const { text, ...props } = this.props;
+    const { text, typeWriterStyle, ...props } = this.props;
     const { visibleChars } = this.state;
 
-    return <Text {...props}>{text.slice(0, visibleChars)}</Text>;
+    return <Text style={typeWriterStyle} {...props}>{text.slice(0, visibleChars)}</Text>;
   }
 }
 

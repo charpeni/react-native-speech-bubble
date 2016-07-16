@@ -21,8 +21,9 @@ const propTypes = {
   speakerTextStyle: Text.propTypes.style,
   speechBubbleActiveOpacity: PropTypes.number,
   speechBubbleStyle: View.propTypes.style,
-  speechBubbleTextStyle: Text.propTypes.style,
+  speechBubbleTextStyle: View.propTypes.style,
   speeches: PropTypes.array.isRequired,
+  typeWriterStyle: Text.propTypes.style,
   style: View.propTypes.style,
 };
 
@@ -54,6 +55,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
+    backgroundColor: 'transparent',
+  },
+  typeWriter : {
     backgroundColor: 'transparent',
   },
 });
@@ -231,6 +235,7 @@ class SpeechBubble extends React.Component {
 
                   this.setState({ typeEnd: true });
                 }}
+                typeWriterStyle={this.props.typeWriterStyle || styles.typeWriter}
               />
             </View>
             {this.NextSpeechBubble}
