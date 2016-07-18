@@ -24,6 +24,7 @@ npm install --save react-native-speech-bubble
 |------|------|-------------|
 | `allowSkip`| `bool` | Speech bubble will be clickable before the end of the animation (Default is `false`) |
 | `allowSpeechReplay`| `bool` | Add a replay action at the end of the speeches (Default is `false`)|
+| `nextStyle`| `Text.propTypes.style` | Style of the "Next" icon |
 | `onSpeechEnd`| `func` | Callback that will be called at the end of the animation of the current speech |
 | `onSpeechNext`| `func` | Callback that will be called when you triggered the next speech |
 | `onSpeechReplay`| `func` | Callback that will be called when you triggered the replay action |
@@ -33,10 +34,9 @@ npm install --save react-native-speech-bubble
 | `speechBubbleActiveOpacity`| `number` | Opacity of the clickable bubble as a `TouchableOpacity` |
 | `speechBubbleStyle`| `View.propTypes.style` | Style that will be applied to the speech bubble |
 | `speechBubbleTextStyle`| `Text.propTypes.style` | Style that will be applied to the text of the speech bubble. This is actually applied to a `View` element. If you want to influence the `Text` Commponent, please use `typeWriterStyle` instead |
-| `typeWriterStyle`| `Text.propTypes.style` | Style of the TypeWriter `Text` Component |
-| `nextStyle`| `Text.propTypes.style` | Style of the "Next" icon |
 | `speeches`| `array of string` | **(Required)** Speeches that will be displayed into the speech bubble, one item = one bubble. |
 | `style`| `View.propTypes.style` | Style of the `<SpeechBubble>` component (container) |
+| `typeWriterStyle`| `Text.propTypes.style` | Style of the TypeWriter `Text` Component |
 
 ## License
 MIT.
