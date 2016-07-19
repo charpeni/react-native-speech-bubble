@@ -1,6 +1,6 @@
 {
   "name": "react-native-speech-bubble",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A speech bubble dialog component for React Native.",
   "main": "index.js",
   "scripts": {
