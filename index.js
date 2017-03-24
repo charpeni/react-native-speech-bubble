@@ -29,12 +29,6 @@ const propTypes = {
 };
 
 const styles = StyleSheet.create({
-  dialogView: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    backgroundColor: 'transparent',
-  },
   dialog: {
     flexDirection: 'row',
     borderRadius: 50,
@@ -49,16 +43,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   dialogText: {
-    flex: 1,
+    flexShrink: 1,
   },
   dialogNext: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     padding: 5,
+    justifyContent: 'center',
     backgroundColor: 'transparent',
   },
-  typeWriter : {
+  typeWriter: {
     backgroundColor: 'transparent',
   },
 });
@@ -128,6 +120,7 @@ class SpeechBubble extends React.Component {
       toValue: 0.9,
       tension: 40,
       friction: 3,
+      useNativeDriver: true,
     }).start();
   }
 
@@ -136,6 +129,7 @@ class SpeechBubble extends React.Component {
       toValue: 1,
       tension: 40,
       friction: 3,
+      useNativeDriver: true,
     }).start();
   }
 
@@ -147,10 +141,12 @@ class SpeechBubble extends React.Component {
       Animated.timing(anim.y, {
         toValue: -5,
         duration: translateDuration,
+        useNativeDriver: true,
       }),
       Animated.timing(anim.y, {
         toValue: 5,
         duration: translateDuration,
+        useNativeDriver: true,
       }),
     ]).start(() => {
       this.nextSpeechBubbleAnimation();
@@ -161,7 +157,8 @@ class SpeechBubble extends React.Component {
     return !this.state.lastSpeech ? (
       <Animated.View
         style={[
-          this.props.nextStyle || styles.dialogNext,
+          styles.dialogNext,
+          this.props.nextStyle,
           { transform: [{ translateY: this.state.nextDialogAnimation.y }] },
           { opacity: this.state.typeEnd && !this.state.lastSpeech ? 1 : 0 },
         ]}
@@ -179,11 +176,13 @@ class SpeechBubble extends React.Component {
       Animated.timing(anim, {
         toValue: 100,
         duration: rotateDuration,
+        useNativeDriver: true,
       }),
       Animated.delay(1000),
       Animated.timing(anim, {
         toValue: 0,
         duration: rotateDuration,
+        useNativeDriver: true,
       }),
     ]).start(() => {
       this.replaySpeechBubbleAnimation();
@@ -199,7 +198,8 @@ class SpeechBubble extends React.Component {
     return this.state.lastSpeech ? (
       <Animated.View
         style={[
-          this.props.nextStyle || styles.dialogNext,
+          styles.dialogNext,
+          this.props.nextStyle,
           { transform: [{ rotate: interpolatedRotateAnimation }] },
           { opacity: this.state.typeEnd && this.state.lastSpeech ? 1 : 0 },
         ]}
@@ -225,7 +225,7 @@ class SpeechBubble extends React.Component {
           onPressOut={this.onSpeechBubblePressOut}
         >
           <View style={this.props.speechBubbleStyle || styles.dialog}>
-            <View style={this.props.speechBubbleTextStyle || styles.dialogText}>
+            <View style={[styles.dialogText, this.props.speechBubbleTextStyle]}>
               <TypeWriter
                 text={this.props.speeches[this.state.speechIndex]}
                 typing={1}

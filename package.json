@@ -2,9 +2,10 @@
   "name": "react-native-speech-bubble",
   "version": "0.2.0",
   "description": "A speech bubble dialog component for React Native.",
+  "repository": "charpeni/react-native-speech-bubble",
   "main": "index.js",
   "scripts": {
-    "test": "eslint ."
+    "lint": "eslint ."
   },
   "contributors": [
     "Nicolas Charpentier"
@@ -26,7 +27,7 @@
   ],
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": ">= 0.40.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
