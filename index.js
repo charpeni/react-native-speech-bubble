@@ -26,6 +26,7 @@ const propTypes = {
   typeWriterStyle: Text.propTypes.style,
   nextStyle: View.propTypes.style,
   style: View.propTypes.style,
+  hideIcons: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -239,8 +240,8 @@ class SpeechBubble extends React.Component {
                 typeWriterStyle={this.props.typeWriterStyle || styles.typeWriter}
               />
             </View>
-            {this.NextSpeechBubble}
-            {this.ReplaySpeechBubble}
+            {!this.props.hideIcons && this.NextSpeechBubble}
+            {!this.props.hideIcons && this.ReplaySpeechBubble}
           </View>
         </TouchableOpacity>
       </View>
