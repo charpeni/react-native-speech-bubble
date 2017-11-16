@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Text } from 'react-native';
 
 const delayShape = PropTypes.shape({
@@ -12,7 +13,7 @@ const delayShape = PropTypes.shape({
 
 const propTypes = {
   fixed: PropTypes.bool,
-  delayMap: PropTypes.arrayOf(React.PropTypes.shape(delayShape)),
+  delayMap: PropTypes.arrayOf(PropTypes.shape(delayShape)),
   typing: PropTypes.oneOf([-1, 0, 1]),
   maxDelay: PropTypes.number,
   minDelay: PropTypes.number,
