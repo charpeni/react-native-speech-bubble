@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ViewPropTypes,
 } from 'react-native';
 
 import TypeWriter from './TypeWriter';
@@ -18,15 +19,15 @@ const propTypes = {
   onSpeechNext: PropTypes.func,
   onSpeechReplay: PropTypes.func,
   speaker: PropTypes.string,
-  speakerStyle: View.propTypes.style,
+  speakerStyle: ViewPropTypes.style,
   speakerTextStyle: Text.propTypes.style,
   speechBubbleActiveOpacity: PropTypes.number,
-  speechBubbleStyle: View.propTypes.style,
-  speechBubbleTextStyle: View.propTypes.style,
+  speechBubbleStyle: ViewPropTypes.style,
+  speechBubbleTextStyle: ViewPropTypes.style,
   speeches: PropTypes.array.isRequired,
   typeWriterStyle: Text.propTypes.style,
-  nextStyle: View.propTypes.style,
-  style: View.propTypes.style,
+  nextStyle: ViewPropTypes.style,
+  style: ViewPropTypes.style,
   hideIcons: PropTypes.bool,
 };
 
