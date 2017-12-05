@@ -34,13 +34,13 @@ import SpeechBubble from 'react-native-speech-bubble';
 | `onSpeechNext`| `func` | Callback that will be called when you triggered the next speech |
 | `onSpeechReplay`| `func` | Callback that will be called when you triggered the replay action |
 | `speaker`| `string` | Title of the speech bubble (Speaker or interlocutor) |
-| `speakerStyle`| `View.propTypes.style` | Style that will be applied to the speaker view |
+| `speakerStyle`| `ViewPropTypes.style,` | Style that will be applied to the speaker view |
 | `speakerTextStyle`| `Text.propTypes.style` | Style that will be applied to the speaker text style |
 | `speechBubbleActiveOpacity`| `number` | Opacity of the clickable bubble as a `TouchableOpacity` |
-| `speechBubbleStyle`| `View.propTypes.style` | Style that will be applied to the speech bubble |
+| `speechBubbleStyle`| `ViewPropTypes.style,` | Style that will be applied to the speech bubble |
 | `speechBubbleTextStyle`| `Text.propTypes.style` | Style that will be applied to the text of the speech bubble. This is actually applied to a `View` element. If you want to influence the `Text` Component, please use `typeWriterStyle` instead |
 | `speeches`| `array of string` | **(Required)** Speeches that will be displayed into the speech bubble, one item = one bubble. |
-| `style`| `View.propTypes.style` | Style of the `<SpeechBubble>` component (container) |
+| `style`| `ViewPropTypes.style,` | Style of the `<SpeechBubble>` component (container) |
 | `typeWriterStyle`| `Text.propTypes.style` | Style of the TypeWriter `Text` Component |
 
 ## License
