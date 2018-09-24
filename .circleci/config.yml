@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/react-native-speech-bubble
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - restore-cache:
+          key: yarn-
+      - restore_cache:
+          key: node-
+      - run: yarn --cache-folder="/home/circleci/.yarn-cache" --frozen-lockfile
+      - save-cache:
+          key: yarn-
+          paths:
+            - ~/.yarn-cache
+      - save_cache:
+          key: node-
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: ~/react-native-speech-bubble
+          paths:
+            - node_modules
+      - run:
+          name: lint
+          command: yarn lint
