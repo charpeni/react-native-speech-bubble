@@ -13,4 +13,4 @@ test:
     - mkdir -p $CIRCLE_TEST_REPORTS/eslint
     - touch $CIRCLE_TEST_REPORTS/eslint/eslint.xml
   override:
-    - yarn lint -- -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml -f junit
+    - yarn lint -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml -f junit
