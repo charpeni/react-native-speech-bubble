@@ -42,6 +42,7 @@ import SpeechBubble from 'react-native-speech-bubble';
 | `speeches`| `array of string` | **(Required)** Speeches that will be displayed into the speech bubble, one item = one bubble. |
 | `style`| `ViewPropTypes.style,` | Style of the `<SpeechBubble>` component (container) |
 | `typeWriterStyle`| `Text.propTypes.style` | Style of the TypeWriter `Text` Component |
+| `writingSpeed`| `number` | Time in milliseconds between each letter (Default is `100`) |
 
 ## License
 MIT.
