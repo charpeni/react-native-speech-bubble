@@ -29,6 +29,11 @@ const propTypes = {
   nextStyle: ViewPropTypes.style,
   style: ViewPropTypes.style,
   hideIcons: PropTypes.bool,
+  writingDelay: PropTypes.number,
+};
+
+const defaultProps = {
+  writingDelay: 100,
 };
 
 const styles = StyleSheet.create({
@@ -230,6 +235,7 @@ class SpeechBubble extends React.Component {
           <View style={this.props.speechBubbleStyle || styles.dialog}>
             <View style={[styles.dialogText, this.props.speechBubbleTextStyle]}>
               <TypeWriter
+                maxDelay={this.props.writingDelay}
                 text={this.props.speeches[this.state.speechIndex]}
                 typing={1}
                 onTypingEnd={() => {
@@ -252,5 +258,6 @@ class SpeechBubble extends React.Component {
 }
 
 SpeechBubble.propTypes = propTypes;
+SpeechBubble.defaultProps = defaultProps;
 
 export default SpeechBubble;
