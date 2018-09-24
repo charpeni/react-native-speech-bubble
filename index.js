@@ -29,6 +29,17 @@ const propTypes = {
   nextStyle: ViewPropTypes.style,
   style: ViewPropTypes.style,
   hideIcons: PropTypes.bool,
+  animateTouchIcon: PropTypes.bool,
+  touchIcon: Image.propTypes.source,
+  animateReplayIcon: PropTypes.bool,
+  replayIcon: Image.propTypes.source,
+};
+
+const defaultProps = {
+  animateTouchIcon: true,
+  touchIcon: require('./assets/ic_touch_app.png'),
+  animateReplayIcon: true,
+  replayIcon: require('./assets/ic_replay.png'),
 };
 
 const styles = StyleSheet.create({
@@ -162,11 +173,11 @@ class SpeechBubble extends React.Component {
         style={[
           styles.dialogNext,
           this.props.nextStyle,
-          { transform: [{ translateY: this.state.nextDialogAnimation.y }] },
+          { transform: this.props.animateTouchIcon ? [{ translateY: this.state.nextDialogAnimation.y }] : [] },
           { opacity: this.state.typeEnd && !this.state.lastSpeech ? 1 : 0 },
         ]}
       >
-        <Image source={require('./assets/ic_touch_app.png')} />
+        <Image source={this.props.touchIcon} />
       </Animated.View>
     ) : null;
   }
@@ -203,12 +214,12 @@ class SpeechBubble extends React.Component {
         style={[
           styles.dialogNext,
           this.props.nextStyle,
-          { transform: [{ rotate: interpolatedRotateAnimation }] },
+          { transform: this.props.animateReplayIcon ? [{ rotate: interpolatedRotateAnimation }] : [] },
           { opacity: this.state.typeEnd && this.state.lastSpeech ? 1 : 0 },
         ]}
       >
         <Image
-          source={require('./assets/ic_replay.png')}
+          source={this.props.replayIcon}
         />
       </Animated.View>
     ) : null;
@@ -252,5 +263,6 @@ class SpeechBubble extends React.Component {
 }
 
 SpeechBubble.propTypes = propTypes;
+SpeechBubble.defaultProps = defaultProps;
 
 export default SpeechBubble;
