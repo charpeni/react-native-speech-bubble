@@ -29,6 +29,14 @@ const propTypes = {
   nextStyle: ViewPropTypes.style,
   style: ViewPropTypes.style,
   hideIcons: PropTypes.bool,
+  onFinalEnd: PropTypes.func,
+  activateAutoMode: PropTypes.bool,
+  timeAfterASpeech: PropTypes.number,
+};
+
+const defaultProps = {
+  activateAutoMode: false,
+  timeAfterASpeech: 5000,
 };
 
 const styles = StyleSheet.create({
@@ -71,11 +79,14 @@ class SpeechBubble extends React.Component {
       lastSpeech: false,
     };
 
+    this.handleTypingEnd = this.handleTypingEnd.bind(this);
     this.onSpeechBubblePress = this.onSpeechBubblePress.bind(this);
     this.onSpeechBubblePressIn = this.onSpeechBubblePressIn.bind(this);
     this.onSpeechBubblePressOut = this.onSpeechBubblePressOut.bind(this);
     this.nextSpeechBubbleAnimation = this.nextSpeechBubbleAnimation.bind(this);
     this.replaySpeechBubbleAnimation = this.replaySpeechBubbleAnimation.bind(this);
+    this.startAfterSpeechTimer = this.startAfterSpeechTimer.bind(this);
+    this.stopAfterSpeechTimer = this.stopAfterSpeechTimer.bind(this);
   }
 
   componentDidMount() {
@@ -83,11 +94,17 @@ class SpeechBubble extends React.Component {
     this.replaySpeechBubbleAnimation();
   }
 
+  componentWillUnmount() {
+    this.stopAfterSpeechTimer();
+  }
+
   onSpeechBubblePress() {
     const { allowSkip, speechIndex, typeEnd } = this.state;
-    const { onSpeechNext, onSpeechReplay, speeches } = this.props;
+    const { allowSpeechReplay, onFinalEnd, onSpeechNext, onSpeechReplay, speeches } = this.props;
 
     if (allowSkip || typeEnd) {
+      this.stopAfterSpeechTimer();
+
       if (speechIndex + 1 < speeches.length) {
         const lastSpeech = (speechIndex + 1) + 1 === speeches.length;
 
@@ -103,16 +120,20 @@ class SpeechBubble extends React.Component {
         });
       } else {
         // Replay speech
-        if (onSpeechReplay) {
+        if (allowSpeechReplay && onSpeechReplay) {
           onSpeechReplay();
         }
 
-        if (this.props.allowSpeechReplay) {
+        if (allowSpeechReplay) {
           this.setState({
             speechIndex: 0,
             typeEnd: false,
             lastSpeech: speeches.length === 1,
           });
+        }
+
+        if (!allowSpeechReplay && onFinalEnd) {
+          onFinalEnd();
         }
       }
     }
@@ -157,13 +178,13 @@ class SpeechBubble extends React.Component {
   }
 
   get NextSpeechBubble() {
-    return !this.state.lastSpeech ? (
+    return !this.state.lastSpeech || !this.props.allowSpeechReplay ? (
       <Animated.View
         style={[
           styles.dialogNext,
           this.props.nextStyle,
           { transform: [{ translateY: this.state.nextDialogAnimation.y }] },
-          { opacity: this.state.typeEnd && !this.state.lastSpeech ? 1 : 0 },
+          { opacity: this.state.typeEnd ? 1 : 0 },
         ]}
       >
         <Image source={require('./assets/ic_touch_app.png')} />
@@ -198,7 +219,7 @@ class SpeechBubble extends React.Component {
       outputRange: ['0deg', '360deg'],
     });
 
-    return this.state.lastSpeech ? (
+    return this.state.lastSpeech && this.props.allowSpeechReplay ? (
       <Animated.View
         style={[
           styles.dialogNext,
@@ -212,6 +233,28 @@ class SpeechBubble extends React.Component {
         />
       </Animated.View>
     ) : null;
+  }
+
+  handleTypingEnd() {
+    if (this.props.onSpeechEnd) {
+      this.props.onSpeechEnd();
+    }
+    this.setState({ typeEnd: true });
+    this.startAfterSpeechTimer();
+  }
+
+  startAfterSpeechTimer() {
+    const { activateAutoMode, timeAfterASpeech } = this.props;
+    if (activateAutoMode) {
+      this.stopAfterSpeechTimer();
+      this.afterSpeechTimer = setTimeout(() => {
+        this.onSpeechBubblePress();
+      }, timeAfterASpeech);
+    }
+  }
+
+  stopAfterSpeechTimer() {
+    clearTimeout(this.afterSpeechTimer);
   }
 
   render() {
@@ -232,13 +275,7 @@ class SpeechBubble extends React.Component {
               <TypeWriter
                 text={this.props.speeches[this.state.speechIndex]}
                 typing={1}
-                onTypingEnd={() => {
-                  if (this.props.onSpeechEnd) {
-                    this.props.onSpeechEnd();
-                  }
-
-                  this.setState({ typeEnd: true });
-                }}
+                onTypingEnd={this.handleTypingEnd}
                 typeWriterStyle={this.props.typeWriterStyle || styles.typeWriter}
               />
             </View>
@@ -252,5 +289,6 @@ class SpeechBubble extends React.Component {
 }
 
 SpeechBubble.propTypes = propTypes;
+SpeechBubble.defaultProps = defaultProps;
 
 export default SpeechBubble;
