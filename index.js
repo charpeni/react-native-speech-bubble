@@ -173,7 +173,9 @@ class SpeechBubble extends React.Component {
         style={[
           styles.dialogNext,
           this.props.nextStyle,
-          { transform: this.props.animateTouchIcon ? [{ translateY: this.state.nextDialogAnimation.y }] : [] },
+          { transform: this.props.animateTouchIcon
+            ? [{ translateY: this.state.nextDialogAnimation.y }]
+            : [] },
           { opacity: this.state.typeEnd && !this.state.lastSpeech ? 1 : 0 },
         ]}
       >
@@ -214,7 +216,9 @@ class SpeechBubble extends React.Component {
         style={[
           styles.dialogNext,
           this.props.nextStyle,
-          { transform: this.props.animateReplayIcon ? [{ rotate: interpolatedRotateAnimation }] : [] },
+          { transform: this.props.animateReplayIcon
+            ? [{ rotate: interpolatedRotateAnimation }]
+            : [] },
           { opacity: this.state.typeEnd && this.state.lastSpeech ? 1 : 0 },
         ]}
       >
