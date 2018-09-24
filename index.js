@@ -29,7 +29,7 @@ const propTypes = {
   nextStyle: ViewPropTypes.style,
   style: ViewPropTypes.style,
   hideIcons: PropTypes.bool,
-  writingDelay: PropTypes.number
+  writingDelay: PropTypes.number,
 };
 
 const defaultProps = {
