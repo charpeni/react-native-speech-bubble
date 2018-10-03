@@ -45,6 +45,24 @@ import SpeechBubble from 'react-native-speech-bubble';
 | `onFinalEnd`| `func` | Callback that will be called when you triggered the last speech |
 | `activateAutoMode`| `bool` | The next speech will automatically be displayed. (Default is `false`) |
 | `timeAfterASpeech`| `number` | Time in milliseconds before starting the next speech if `activateAutoMode` is `true` (Default is `5000`) |
+| `writingDelay`| `number` | Time in milliseconds between each letter (Default is `100`) |
+
+## How To
+
+### Run Tests
+
+* Linter: `yarn lint`
+
+## Contributing
+
+**Never** commit directly on master, instead use branches and pull requests.
+
+You must use the following Style Guides :
+
+* [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+* [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+
+This project contains a linting config, you should setup `eslint` into your IDE with `.eslintrc.js`.
 
 ## License
 MIT.
