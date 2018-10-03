@@ -33,6 +33,7 @@ const propTypes = {
   touchIcon: Image.propTypes.source,
   animateReplayIcon: PropTypes.bool,
   replayIcon: Image.propTypes.source,
+  writingDelay: PropTypes.number,
 };
 
 const defaultProps = {
@@ -40,6 +41,7 @@ const defaultProps = {
   touchIcon: require('./assets/ic_touch_app.png'),
   animateReplayIcon: true,
   replayIcon: require('./assets/ic_replay.png'),
+  writingDelay: 100,
 };
 
 const styles = StyleSheet.create({
@@ -245,6 +247,7 @@ class SpeechBubble extends React.Component {
           <View style={this.props.speechBubbleStyle || styles.dialog}>
             <View style={[styles.dialogText, this.props.speechBubbleTextStyle]}>
               <TypeWriter
+                maxDelay={this.props.writingDelay}
                 text={this.props.speeches[this.state.speechIndex]}
                 typing={1}
                 onTypingEnd={() => {
