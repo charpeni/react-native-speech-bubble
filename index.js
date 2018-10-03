@@ -85,8 +85,6 @@ class SpeechBubble extends React.Component {
     this.onSpeechBubblePressOut = this.onSpeechBubblePressOut.bind(this);
     this.nextSpeechBubbleAnimation = this.nextSpeechBubbleAnimation.bind(this);
     this.replaySpeechBubbleAnimation = this.replaySpeechBubbleAnimation.bind(this);
-    this.startAfterSpeechTimer = this.startAfterSpeechTimer.bind(this);
-    this.stopAfterSpeechTimer = this.stopAfterSpeechTimer.bind(this);
   }
 
   componentDidMount() {
