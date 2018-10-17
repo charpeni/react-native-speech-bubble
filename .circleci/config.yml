@@ -1,28 +1,31 @@
+aliases:
+  - &save-cache-yarn
+    key: yarn-packages-{{ checksum "yarn.lock" }}
+    paths:
+      - ~/.cache/yarn
+  - &restore-cache-yarn
+    name: Restore Yarn Package Cache
+    keys:
+      - yarn-packages-{{ checksum "yarn.lock" }}
+
+defaults: &defaults
+  working_directory: ~/react-native-speech-bubble
+  docker:
+    - image: circleci/node:10
+
 version: 2
 jobs:
   build:
-    working_directory: ~/react-native-speech-bubble
-    docker:
-      - image: circleci/node:8
+    <<: *defaults
     steps:
       - checkout
-      - restore-cache:
-          key: yarn-
-      - restore_cache:
-          key: node-
-      - run: yarn --cache-folder="/home/circleci/.yarn-cache" --frozen-lockfile
-      - save-cache:
-          key: yarn-
-          paths:
-            - ~/.yarn-cache
-      - save_cache:
-          key: node-
-          paths:
-            - node_modules
-      - persist_to_workspace:
-          root: ~/react-native-speech-bubble
-          paths:
-            - node_modules
+      - restore_cache: *restore-cache-yarn
       - run:
-          name: lint
-          command: yarn lint
+          name: Yarn Install
+          command: |
+            yarn install --no-progress --non-interactive --cache-folder ~/.cache/yarn
+      - run:
+          name: Linting
+          command: |
+            yarn lint
+      - save_cache: *save-cache-yarn
