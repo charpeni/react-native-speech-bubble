@@ -42,6 +42,10 @@ import SpeechBubble from 'react-native-speech-bubble';
 | `speeches`| `array of string` | **(Required)** Speeches that will be displayed into the speech bubble, one item = one bubble. |
 | `style`| `ViewPropTypes.style,` | Style of the `<SpeechBubble>` component (container) |
 | `typeWriterStyle`| `Text.propTypes.style` | Style of the TypeWriter `Text` Component |
+| `animateTouchIcon`| `bool` | The touch icon will be animated (Default is `true`)|
+| `touchIcon`| `Image.propTypes.source` | Replace the default touch icon |
+| `animateReplayIcon`| `bool` | The replay icon will be animated (Default is `true`)|
+| `replayIcon`| `Image.propTypes.source` | Replace the default replay icon |
 | `writingDelay`| `number` | Time in milliseconds between each letter (Default is `100`) |
 
 ## How To
