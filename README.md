@@ -45,6 +45,10 @@ import SpeechBubble from 'react-native-speech-bubble';
 | `onFinalEnd`| `func` | Callback that will be called when you triggered the last speech |
 | `activateAutoMode`| `bool` | The next speech will automatically be displayed. (Default is `false`) |
 | `timeAfterASpeech`| `number` | Time in milliseconds before starting the next speech if `activateAutoMode` is `true` (Default is `5000`) |
+| `animateTouchIcon`| `bool` | The touch icon will be animated (Default is `true`)|
+| `touchIcon`| `Image.propTypes.source` | Replace the default touch icon |
+| `animateReplayIcon`| `bool` | The replay icon will be animated (Default is `true`)|
+| `replayIcon`| `Image.propTypes.source` | Replace the default replay icon |
 | `writingDelay`| `number` | Time in milliseconds between each letter (Default is `100`) |
 
 ## How To
